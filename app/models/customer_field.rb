@@ -1,0 +1,3 @@
+class CustomerField < ApplicationRecord
+        
+end

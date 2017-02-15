@@ -1,0 +1,18 @@
+<%= simple_form_for(@customer) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :name %>
+    <%= f.input :description %>
+  </div>
+
+  <% @customer_fields.each do |c|%>
+  <%= c.id %>
+      <%= label_tag c.label %>
+      <%= text_field_tag c.name %>
+  <% end %>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
