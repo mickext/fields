@@ -6,10 +6,11 @@
     <%= f.input :description %>
   </div>
 
-  <% @customer_fields.each do |c|%>
-  <%= c.id %>
-      <%= label_tag c.label %>
-      <%= text_field_tag c.name %>
+
+  <%= f.simple_fields_for :custom do |setting| %>
+    <% @customer_fields.each do |c|%>
+        <%= setting.input c.name %>
+    <% end %>
   <% end %>
 
   <div class="form-actions">

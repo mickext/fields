@@ -25,17 +25,12 @@ class CustomersController < ApplicationController
   # POST /customers
   # POST /customers.json
   def create
-    custom = Hash.new
     @customer_fields = CustomerField.all
     @customer = Customer.new(customer_params)
 
+    @customer.custom = customer_params[:custom]
+
     respond_to do |format|
-
-      @customer_fields.each do |field|
-        custom[field.id] = field.name 
-      end
-
-      @customer.custom = custom
 
       if @customer.save
         format.html { redirect_to @customer, notice: 'Customer was successfully created.' }
@@ -79,6 +74,6 @@ class CustomersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def customer_params
-      params.require(:customer).permit(:name, :description, :custom)
+      params.require(:customer).permit(:name, :description, :custom[])
     end
 end
